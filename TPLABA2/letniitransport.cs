@@ -40,5 +40,6 @@ namespace TPLABA2
         {
             ColorBody = color;
         }
+        public abstract string getInfo();       
     }
 }
