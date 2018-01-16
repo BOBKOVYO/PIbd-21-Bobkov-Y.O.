@@ -16,16 +16,24 @@ namespace TPLABA3
         Parking parking;
         public FormParking()
         {
-            InitializeComponent();       
-            parking = new Parking();
+            InitializeComponent();
+            parking = new Parking(5);
+            for (int i = 1; i < 6; i++)
+            {
+                listBoxLevels.Items.Add("Уровень " + i);
+            }
+            listBoxLevels.SelectedIndex = parking.getCurrentLevel;
             Draw();
         }
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            parking.Draw(gr, pictureBoxParking.Width, pictureBoxParking.Height);
-            pictureBoxParking.Image = bmp;
+            if (listBoxLevels.SelectedIndex > -1)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                parking.Draw(gr, pictureBoxParking.Width, pictureBoxParking.Height);
+                pictureBoxParking.Image = bmp;
+            }
         }
         private void buttonSetSamolet_Click(object sender, EventArgs e)
         {
@@ -37,9 +45,8 @@ namespace TPLABA3
                 Draw();
                 MessageBox.Show("Ваше место: " + place);
             }
-        
-        }
 
+        }
         private void buttonSetFrontovoibombardir_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
@@ -58,15 +65,23 @@ namespace TPLABA3
 
         private void buttonTakeSamolet_Click(object sender, EventArgs e)
         {
-            if (maskedTextBox1.Text != "")
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                var samolet = parking.GetSamolet(Convert.ToInt32(maskedTextBox1.Text));
-                Bitmap bmp = new Bitmap(pictureBoxTakeSamolet.Width, pictureBoxTakeSamolet.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                samolet.SetPosition(5, 5);
-                samolet.drawSamolet(gr);
-                pictureBoxTakeSamolet.Image = bmp;
-                Draw();
+                string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
+                if (maskedTextBox1.Text != "")
+                {
+                    var samolet = parking.GetSamolet(Convert.ToInt32(maskedTextBox1.Text));
+                    Bitmap bmp = new Bitmap(pictureBoxTakeSamolet.Width, pictureBoxTakeSamolet.Height);
+                    Graphics gr = Graphics.FromImage(bmp);
+                    samolet.SetPosition(5, 5);
+                    samolet.drawSamolet(gr);
+                    pictureBoxTakeSamolet.Image = bmp;
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Извинте, на этом месте нет самолёта");
+                }
             }
         }
 
@@ -78,6 +93,20 @@ namespace TPLABA3
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
+        }
+
+        private void buttonDown_Click(object sender, EventArgs e)
+        {
+            parking.LevelDown();
+            listBoxLevels.SelectedIndex = parking.getCurrentLevel;
+            Draw();
+        }
+
+        private void buttonUp_Click(object sender, EventArgs e)
+        {
+            parking.LevelUp();
+            listBoxLevels.SelectedIndex = parking.getCurrentLevel;
+            Draw();
         }
     }
 }

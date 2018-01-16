@@ -10,29 +10,35 @@ namespace TPLABA3
 {
     class Parking
     {
-        aerodrom<Itechnica> parking;
+        List<aerodrom<Itechnica>> parkingStages;
         int countPlaces = 20;
         int placeSizeWidth = 210;
         int placeSizeHeight = 80;
-        public Parking()
+        int currentLevel;
+        public int getCurrentLevel { get { return currentLevel; } }
+        public Parking(int countStages)
         {
-            parking = new aerodrom<Itechnica>(countPlaces, null);
+            parkingStages = new List<aerodrom<Itechnica>>(countStages);
+            for (int i = 0; i < countStages; i++)
+            {
+                parkingStages.Add(new aerodrom<Itechnica>(countStages, null));
+            }
         }
 
         public int PutSamolet(Itechnica samolet)
         {
-            return parking + samolet;
+            return parkingStages[currentLevel] + samolet;
         }
         public Itechnica GetSamolet(int nomer)
         {
-            return parking - nomer;
+            return parkingStages[currentLevel] - nomer;
         }
         public void Draw(Graphics g, int width, int height)
         {
             DrawMarking(g);
             for (int i = 0; i < countPlaces; i++)
             {
-                var samolet = parking.getObject(i);
+                var samolet = parkingStages[currentLevel][i];
                 if (samolet != null)
                 {
                     samolet.SetPosition(5 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 15);
@@ -51,6 +57,20 @@ namespace TPLABA3
                     g.DrawLine(pen, i * placeSizeWidth, j * placeSizeHeight, i * placeSizeWidth + 140, j * placeSizeHeight);
                 }
                 g.DrawLine(pen, i * placeSizeWidth, 0, i * placeSizeWidth, 400);
+            }
+        }
+        public void LevelUp()
+        {
+            if (currentLevel + 1 < parkingStages.Count)
+            {
+                currentLevel++;
+            }
+        }
+        public void LevelDown()
+        {
+            if (currentLevel > 0)
+            {
+                currentLevel--;
             }
         }
     }
