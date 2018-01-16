@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TPLABA2;
+using TPLABA7;
 
 namespace TPLABA3
 {

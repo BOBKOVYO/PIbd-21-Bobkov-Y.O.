@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPLABA2;
 using TPLABA3;
-
+using TPLABA7;
 
 namespace TPLABA5
 {
@@ -54,7 +54,7 @@ namespace TPLABA5
             panelBlue.MouseDown += panelColor_MouseDown;
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
         }
-       
+
         private void labelSamolet_MouseDown(object sender, MouseEventArgs e)
         {
             labelSamolet.DoDragDrop(labelSamolet.Text, DragDropEffects.Move | DragDropEffects.Copy);
@@ -87,7 +87,7 @@ namespace TPLABA5
         {
             (sender as Control).DoDragDrop((sender as Control).BackColor,
                 DragDropEffects.Move | DragDropEffects.Copy);
-        }      
+        }
         private void labelBaseColor_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(typeof(Color)))
@@ -113,14 +113,25 @@ namespace TPLABA5
                     DrawSamolet();
                 }
             }
-        }    
+        }
         private void buttonOk_Click_1(object sender, EventArgs e)
         {
-            if (eventAddSamolet != null)
+            try
             {
-                eventAddSamolet(samolet);
+                if (eventAddSamolet != null)
+                {
+                    eventAddSamolet(samolet);
+                    Close();
+                }
             }
-            Close();
+            catch (ParkingnullautoException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка создания", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

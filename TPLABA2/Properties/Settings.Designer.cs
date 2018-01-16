@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPLABA6.Properties
+namespace TPLABA7.Properties
 {
 
 

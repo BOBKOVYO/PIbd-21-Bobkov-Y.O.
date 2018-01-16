@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TPLABA2;
+using TPLABA7;
 
 namespace TPLABA3
 {
@@ -16,13 +17,13 @@ namespace TPLABA3
         {
             defaultValue = defVal;
             places = new Dictionary<int, T>();
-            maxCount = size;
+            maxCount = size*4;
         }
         public static int operator +(aerodrom<T> p, T samolet)
         {
             if (p.places.Count == p.maxCount)
             {
-                return -1;
+                throw new ParkingOverflowException();
             }
             for (int i = 0; i < p.places.Count; i++)
             {
@@ -43,7 +44,7 @@ namespace TPLABA3
                 p.places.Remove(index);
                 return samolet;
             }
-            return p.defaultValue;
+            throw new ParkingIndexOutofRangeException();
         }
         private bool CheckFreePlace(int index)
         {

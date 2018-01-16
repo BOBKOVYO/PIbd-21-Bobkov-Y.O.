@@ -1,8 +1,10 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TPLABA2;
 using TPLABA5;
+using TPLABA7;
 
 namespace TPLABA3
 {
@@ -10,11 +12,12 @@ namespace TPLABA3
     {
         Parking parking;
         FormSelectSamolet form;
-
+        private Logger log;
 
         public FormParking()
         {
             InitializeComponent();
+            log = LogManager.GetCurrentClassLogger();
             parking = new Parking(5);
             for (int i = 1; i < 6; i++)
             {
@@ -68,19 +71,26 @@ namespace TPLABA3
                 string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
                 if (maskedTextBox1.Text != "")
                 {
-                    Itechnica samolet = parking.GetSamolet(Convert.ToInt32(maskedTextBox1.Text));
-                    if (samolet != null)
+                    try
                     {
-                        Bitmap bmp = new Bitmap(pictureBoxTakeSamolet.Width, pictureBoxTakeSamolet.Height);
-                        Graphics gr = Graphics.FromImage(bmp);
-                        samolet.SetPosition(5, 5);
-                        samolet.drawSamolet(gr);
-                        pictureBoxTakeSamolet.Image = bmp;
-                        Draw();
+                        Itechnica samolet = parking.GetSamolet(Convert.ToInt32(maskedTextBox1.Text));
+                        if (samolet != null)
+                        {
+                            Bitmap bmp = new Bitmap(pictureBoxTakeSamolet.Width, pictureBoxTakeSamolet.Height);
+                            Graphics gr = Graphics.FromImage(bmp);
+                            samolet.SetPosition(5, 5);
+                            samolet.drawSamolet(gr);
+                            pictureBoxTakeSamolet.Image = bmp;
+                            Draw();
+                        }
                     }
-                    else
+                    catch (ParkingIndexOutofRangeException ex)
                     {
-                        MessageBox.Show("Извинте, на этом месте нет самолёта");
+                        MessageBox.Show(ex.Message, "Неверный номер", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -89,6 +99,7 @@ namespace TPLABA3
         {
             parking.LevelDown();
             listBoxLevels.SelectedIndex = parking.getCurrentLevel;
+            log.Info("Переход на уровень ниже Текущий уровень"+parking.getCurrentLevel);
             Draw();
         }
 
@@ -96,6 +107,7 @@ namespace TPLABA3
         {
             parking.LevelUp();
             listBoxLevels.SelectedIndex = parking.getCurrentLevel;
+            log.Info("Переход на уровень выше Текущий уровень" + parking.getCurrentLevel);
             Draw();
         }
 
@@ -109,16 +121,24 @@ namespace TPLABA3
         {
             if (samolet != null)
             {
-                int place = parking.PutSamolet(samolet);
-                if (place > -1)
+                try
                 {
+                    int place = parking.PutSamolet(samolet);
                     Draw();
                     MessageBox.Show("Ваше место: " + place);
                 }
-                else
+                catch (ParkingOverflowException ex)
                 {
-                    MessageBox.Show("Самолёт не удалось поставить ");
+                    MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                throw new ParkingnullautoException();
             }
         }
 
