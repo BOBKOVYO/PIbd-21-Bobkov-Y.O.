@@ -34,11 +34,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.buttonTakeSamolet = new System.Windows.Forms.Button();
-            this.buttonSetSamolet = new System.Windows.Forms.Button();
-            this.buttonSetFrontovoibombardir = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.listBoxLevels = new System.Windows.Forms.ListBox();
+            this.buttonSetSamolet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeSamolet)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -60,7 +59,6 @@
             this.pictureBoxTakeSamolet.Size = new System.Drawing.Size(200, 137);
             this.pictureBoxTakeSamolet.TabIndex = 1;
             this.pictureBoxTakeSamolet.TabStop = false;
-            this.pictureBoxTakeSamolet.Click += new System.EventHandler(this.pictureBoxTakeSamolet_Click);
             // 
             // groupBox1
             // 
@@ -90,7 +88,6 @@
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(84, 22);
             this.maskedTextBox1.TabIndex = 2;
-            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
             // 
             // buttonTakeSamolet
             // 
@@ -101,26 +98,6 @@
             this.buttonTakeSamolet.Text = "Забрать";
             this.buttonTakeSamolet.UseVisualStyleBackColor = true;
             this.buttonTakeSamolet.Click += new System.EventHandler(this.buttonTakeSamolet_Click);
-            // 
-            // buttonSetSamolet
-            // 
-            this.buttonSetSamolet.Location = new System.Drawing.Point(1049, 220);
-            this.buttonSetSamolet.Name = "buttonSetSamolet";
-            this.buttonSetSamolet.Size = new System.Drawing.Size(166, 52);
-            this.buttonSetSamolet.TabIndex = 3;
-            this.buttonSetSamolet.Text = "Посадить самолёт";
-            this.buttonSetSamolet.UseVisualStyleBackColor = true;
-            this.buttonSetSamolet.Click += new System.EventHandler(this.buttonSetSamolet_Click);
-            // 
-            // buttonSetFrontovoibombardir
-            // 
-            this.buttonSetFrontovoibombardir.Location = new System.Drawing.Point(1049, 297);
-            this.buttonSetFrontovoibombardir.Name = "buttonSetFrontovoibombardir";
-            this.buttonSetFrontovoibombardir.Size = new System.Drawing.Size(166, 53);
-            this.buttonSetFrontovoibombardir.TabIndex = 4;
-            this.buttonSetFrontovoibombardir.Text = "Посадить бомбардировщик";
-            this.buttonSetFrontovoibombardir.UseVisualStyleBackColor = true;
-            this.buttonSetFrontovoibombardir.Click += new System.EventHandler(this.buttonSetFrontovoibombardir_Click);
             // 
             // buttonUp
             // 
@@ -151,17 +128,26 @@
             this.listBoxLevels.Size = new System.Drawing.Size(166, 100);
             this.listBoxLevels.TabIndex = 7;
             // 
+            // buttonSetSamolet
+            // 
+            this.buttonSetSamolet.Location = new System.Drawing.Point(1050, 253);
+            this.buttonSetSamolet.Name = "buttonSetSamolet";
+            this.buttonSetSamolet.Size = new System.Drawing.Size(166, 52);
+            this.buttonSetSamolet.TabIndex = 8;
+            this.buttonSetSamolet.Text = "Заказать самолёт";
+            this.buttonSetSamolet.UseVisualStyleBackColor = true;
+            this.buttonSetSamolet.Click += new System.EventHandler(this.buttonSetSamolet_Click_1);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1236, 640);
+            this.Controls.Add(this.buttonSetSamolet);
             this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonTakeSamolet);
-            this.Controls.Add(this.buttonSetFrontovoibombardir);
-            this.Controls.Add(this.buttonSetSamolet);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxTakeSamolet);
             this.Controls.Add(this.pictureBoxParking);
@@ -183,11 +169,10 @@
         private System.Windows.Forms.Button buttonTakeSamolet;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.Button buttonSetSamolet;
-        private System.Windows.Forms.Button buttonSetFrontovoibombardir;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.ListBox listBoxLevels;
+        private System.Windows.Forms.Button buttonSetSamolet;
     }
 }
 

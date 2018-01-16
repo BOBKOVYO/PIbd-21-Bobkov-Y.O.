@@ -37,5 +37,9 @@ namespace TPLABA2
             }
             base.GrajdanSamolet(g);
         }
+        public void setDopColor(Color color)
+        {
+            dopColor = color;
+        }
     }
 }
