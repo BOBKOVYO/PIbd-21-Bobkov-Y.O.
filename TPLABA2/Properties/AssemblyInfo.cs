@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("TPLABA2")]
+[assembly: AssemblyTitle("TPLABA3")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TPLABA2")]
+[assembly: AssemblyProduct("TPLABA3")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("7c0b4dcc-92cd-4ef8-ae5a-36be4b8ae105")]
+[assembly: Guid("4c21699d-7eed-4f0a-8cda-897e2c765e11")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

@@ -1,0 +1,12 @@
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\bin\Debug\TPLABA3.exe.config
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\bin\Debug\TPLABA3.exe
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\bin\Debug\TPLABA3.pdb
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\obj\Debug\TPLABA3.Properties.Resources.resources
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\obj\Debug\TPLABA3.csproj.GenerateResource.Cache
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\obj\Debug\TPLABA3.exe
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\obj\Debug\TPLABA3.pdb
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\bin\Debug\TPLABA2.exe
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\bin\Debug\TPLABA2.pdb
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\bin\Debug\TPLABA2.exe.config
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\obj\Debug\TPLABA3.csprojResolveAssemblyReference.cache
+C:\Users\1\documents\visual studio 2017\Projects\TPLABA2\TPLABA3\obj\Debug\TPLABA3.FormParking.resources
