@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TPLABA2;
+
+namespace TPLABA3
+{
+    public partial class FormParking : Form
+    {
+        Parking parking;
+        public FormParking()
+        {
+            InitializeComponent();       
+            parking = new Parking();
+            Draw();
+        }
+        private void Draw()
+        {
+            Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
+            Graphics gr = Graphics.FromImage(bmp);
+            parking.Draw(gr, pictureBoxParking.Width, pictureBoxParking.Height);
+            pictureBoxParking.Image = bmp;
+        }
+        private void buttonSetSamolet_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var samolet = new Samolet(100, 4, 1000, dialog.Color);
+                int place = parking.PutSamolet(samolet);
+                Draw();
+                MessageBox.Show("Ваше место: " + place);
+            }
+        
+        }
+
+        private void buttonSetFrontovoibombardir_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ColorDialog dialogDop = new ColorDialog();
+                if (dialogDop.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var samolet = new frontovoibombardir(100, 4, 1000, dialog.Color, true, true, dialogDop.Color);
+                    int place = parking.PutSamolet(samolet);
+                    Draw();
+                    MessageBox.Show("Ваше место: " + place);
+                }
+            }
+        }
+
+        private void buttonTakeSamolet_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBox1.Text != "")
+            {
+                var samolet = parking.GetSamolet(Convert.ToInt32(maskedTextBox1.Text));
+                Bitmap bmp = new Bitmap(pictureBoxTakeSamolet.Width, pictureBoxTakeSamolet.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                samolet.SetPosition(5, 5);
+                samolet.drawSamolet(gr);
+                pictureBoxTakeSamolet.Image = bmp;
+                Draw();
+            }
+        }
+
+        private void pictureBoxTakeSamolet_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+    }
+}
