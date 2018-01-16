@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TPLABA3;
 
-namespace TPLABA3
+namespace TPLABA4
 {
     static class Program
     {
