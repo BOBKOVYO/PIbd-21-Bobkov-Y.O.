@@ -1,0 +1,9 @@
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\bin\Debug\TPLABA2.exe.config
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\bin\Debug\TPLABA2.exe
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\bin\Debug\TPLABA2.pdb
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\obj\Debug\TPLABA2.csprojResolveAssemblyReference.cache
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\obj\Debug\TPLABA2.Form1.resources
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\obj\Debug\TPLABA2.Properties.Resources.resources
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\obj\Debug\TPLABA2.csproj.GenerateResource.Cache
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\obj\Debug\TPLABA2.exe
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA2\obj\Debug\TPLABA2.pdb
