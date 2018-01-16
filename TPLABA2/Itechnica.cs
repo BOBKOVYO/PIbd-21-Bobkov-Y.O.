@@ -15,5 +15,6 @@ namespace TPLABA2
         void loadVzletMass(int count);
         int getVzletMass();
         void setMainColor(Color color);
+        string getInfo();
     }
 }

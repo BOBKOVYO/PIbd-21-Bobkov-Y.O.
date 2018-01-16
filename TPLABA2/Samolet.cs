@@ -74,6 +74,21 @@ namespace TPLABA2
             startPosX = rand.Next(10, 200);
             startPosY = rand.Next(10, 200);
         }
+        public Samolet(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 4)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                MaxcountVzletMass = Convert.ToInt32(strs[1]);
+                Weight = Convert.ToInt32(strs[2]);
+                ColorBody = Color.FromName(strs[3]);
+            }
+            this.countVzletMass = 0;
+            Random rand = new Random();
+            startPosX = rand.Next(10, 200);
+            startPosY = rand.Next(10, 200);
+        }
         public override void moveSamolet(Graphics g)
         {
             startPosX += (MaxSpeed * 500 / (float)Weight) / (countVzletMass == 0 ? 1 : countVzletMass);
@@ -101,6 +116,11 @@ namespace TPLABA2
             g.DrawLine(pen, startPosX + 45, startPosY - 10, startPosX + 45, startPosY + 15);
             g.DrawLine(pen, startPosX + 45, startPosY + 55, startPosX + 55, startPosY + 30);
             g.DrawLine(pen, startPosX + 45, startPosY + 30, startPosX + 45, startPosY + 55);
+        }
+        public override string getInfo()
+        {
+            return MaxSpeed + ";" + MaxcountVzletMass + ";" + 
+                Weight + ";" + ColorBody.Name;
         }
     }
 }

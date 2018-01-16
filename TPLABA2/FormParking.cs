@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPLABA2;
 using TPLABA5;
@@ -74,17 +68,20 @@ namespace TPLABA3
                 string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
                 if (maskedTextBox1.Text != "")
                 {
-                    var samolet = parking.GetSamolet(Convert.ToInt32(maskedTextBox1.Text));
-                    Bitmap bmp = new Bitmap(pictureBoxTakeSamolet.Width, pictureBoxTakeSamolet.Height);
-                    Graphics gr = Graphics.FromImage(bmp);
-                    samolet.SetPosition(5, 5);
-                    samolet.drawSamolet(gr);
-                    pictureBoxTakeSamolet.Image = bmp;
-                    Draw();
-                }
-                else
-                {
-                    MessageBox.Show("Извинте, на этом месте нет самолёта");
+                    Itechnica samolet = parking.GetSamolet(Convert.ToInt32(maskedTextBox1.Text));
+                    if (samolet != null)
+                    {
+                        Bitmap bmp = new Bitmap(pictureBoxTakeSamolet.Width, pictureBoxTakeSamolet.Height);
+                        Graphics gr = Graphics.FromImage(bmp);
+                        samolet.SetPosition(5, 5);
+                        samolet.drawSamolet(gr);
+                        pictureBoxTakeSamolet.Image = bmp;
+                        Draw();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Извинте, на этом месте нет самолёта");
+                    }
                 }
             }
         }
@@ -122,6 +119,41 @@ namespace TPLABA3
                 {
                     MessageBox.Show("Самолёт не удалось поставить ");
                 }
+            }
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (parking.SaveData(saveFileDialog1.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (parking.LoadData(openFileDialog1.FileName))
+                {
+                    MessageBox.Show("Загрузили", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Draw();
             }
         }
     }
