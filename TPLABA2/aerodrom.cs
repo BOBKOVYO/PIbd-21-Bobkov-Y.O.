@@ -16,7 +16,7 @@ namespace TPLABA3
         {
             defaultValue = defVal;
             places = new Dictionary<int, T>();
-            maxCount = size*4;
+            maxCount = size;
         }
         public static int operator +(aerodrom<T> p, T samolet)
         {

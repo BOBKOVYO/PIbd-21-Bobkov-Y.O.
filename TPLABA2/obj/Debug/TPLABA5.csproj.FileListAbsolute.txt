@@ -1,0 +1,13 @@
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\bin\Debug\TPLABA5.exe.config
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\bin\Debug\TPLABA5.exe
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\bin\Debug\TPLABA5.pdb
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\bin\Debug\TPLABA2.exe
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\bin\Debug\TPLABA2.pdb
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\bin\Debug\TPLABA2.exe.config
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\obj\Debug\TPLABA5.csprojResolveAssemblyReference.cache
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\obj\Debug\TPLABA3.FormParking.resources
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\obj\Debug\TPLABA5.Properties.Resources.resources
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\obj\Debug\TPLABA5.csproj.GenerateResource.Cache
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\obj\Debug\TPLABA5.exe
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\obj\Debug\TPLABA5.pdb
+C:\Users\1\Documents\Visual Studio 2017\Projects\TPLABA2\TPLABA5\obj\Debug\TPLABA5.FormSelectSamolet.resources

@@ -8,12 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TPLABA2;
+using TPLABA5;
 
 namespace TPLABA3
 {
     public partial class FormParking : Form
     {
         Parking parking;
+        FormSelectSamolet form;
+
+
         public FormParking()
         {
             InitializeComponent();
@@ -84,17 +88,6 @@ namespace TPLABA3
                 }
             }
         }
-
-        private void pictureBoxTakeSamolet_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         private void buttonDown_Click(object sender, EventArgs e)
         {
             parking.LevelDown();
@@ -107,6 +100,29 @@ namespace TPLABA3
             parking.LevelUp();
             listBoxLevels.SelectedIndex = parking.getCurrentLevel;
             Draw();
+        }
+
+        private void buttonSetSamolet_Click_1(object sender, EventArgs e)
+        {
+            form = new FormSelectSamolet();
+            form.AddEvent(AddSamolet);
+            form.Show();
+        }
+        private void AddSamolet(Itechnica samolet)
+        {
+            if (samolet != null)
+            {
+                int place = parking.PutSamolet(samolet);
+                if (place > -1)
+                {
+                    Draw();
+                    MessageBox.Show("Ваше место: " + place);
+                }
+                else
+                {
+                    MessageBox.Show("Самолёт не удалось поставить ");
+                }
+            }
         }
     }
 }
