@@ -38,14 +38,12 @@ namespace TPLABA3
         public void Draw(Graphics g, int width, int height)
         {
             DrawMarking(g);
-            for (int i = 0; i < countPlaces; i++)
+            int i = 0;
+            foreach (var samolet in parkingStages[currentLevel])
             {
-                var samolet = parkingStages[currentLevel][i];
-                if (samolet != null)
-                {
-                    samolet.SetPosition(5 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 15);
-                    samolet.drawSamolet(g);
-                }
+                samolet.SetPosition(5 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 15);
+                samolet.drawSamolet(g);
+                i++;
             }
         }
         public void DrawMarking(Graphics g)
@@ -177,6 +175,10 @@ namespace TPLABA3
                 }
             }
             return true;
+        }
+        public void Sort()
+        {
+            parkingStages.Sort();
         }
     }
 }
