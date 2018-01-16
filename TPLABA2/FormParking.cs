@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using TPLABA2;
 using TPLABA5;
 using TPLABA7;
+using TPLABA8;
 
 namespace TPLABA3
 {
@@ -175,6 +176,13 @@ namespace TPLABA3
                 }
                 Draw();
             }
+        }
+
+        private void Sort_Click(object sender, EventArgs e)
+        {
+                parking.Sort();
+                Draw();
+                MessageBox.Show("Сортировка окончена");           
         }
     }
 }

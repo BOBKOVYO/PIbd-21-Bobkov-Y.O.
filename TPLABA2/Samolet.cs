@@ -7,8 +7,76 @@ using System.Threading.Tasks;
 
 namespace TPLABA2
 {
-    public class Samolet : letniitransport
+    public class Samolet : letniitransport, IComparable<Samolet>, IEquatable<Samolet>
     {
+        public int CompareTo(Samolet other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (MaxcountVzletMass != other.MaxcountVzletMass)
+            {
+                return MaxcountVzletMass.CompareTo(other.MaxcountVzletMass);
+            }
+            if (Weight != other.Weight)
+            {
+                return Weight.CompareTo(other.Weight);
+            }
+            if (ColorBody != other.ColorBody)
+            {
+                ColorBody.Name.CompareTo(other.ColorBody.Name);
+            }
+            return 0;
+        }
+        public bool Equals(Samolet other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (MaxcountVzletMass != other.MaxcountVzletMass)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (ColorBody != other.ColorBody)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            Samolet samoletObj = obj as Samolet;
+            if (samoletObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(samoletObj);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return MaxSpeed.GetHashCode();
+        }
         public override int MaxSpeed
         {
             get
@@ -119,7 +187,7 @@ namespace TPLABA2
         }
         public override string getInfo()
         {
-            return MaxSpeed + ";" + MaxcountVzletMass + ";" + 
+            return MaxSpeed + ";" + MaxcountVzletMass + ";" +
                 Weight + ";" + ColorBody.Name;
         }
     }
