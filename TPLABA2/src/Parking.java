@@ -1,26 +1,44 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class Parking {
-	aerodrom<Itechnica> parking;
-
+	ArrayList<aerodrom<Itechnica>> parkingStages;
+	
 	int countPlaces = 20;
 	int placeWidth = 210;
 	int placeHeight = 80;
+	int currentLevel;
 
-	public Parking()
+	public Parking(int countStages)
 	{
-		parking = new aerodrom<Itechnica>(countPlaces, null);
+		parkingStages = new ArrayList<aerodrom<Itechnica>>(countStages);
+		for (int i = 0; i < countStages; i++)
+		{
+			parkingStages.add(new aerodrom<Itechnica>(countPlaces, null));
+		}
 	}
-
+	public int getCurrentLevel(){
+		return currentLevel;	
+	}
+				
+	public void levelUp()
+	{
+		if (currentLevel + 1 < parkingStages.size()) currentLevel++;
+	}
+		
+	public void levelDown()
+	{
+		if (currentLevel > 0) currentLevel--;
+	}
 	public int putSamolet(Itechnica samolet)
 	{
-		return parking.plus(parking, samolet);
+		return parkingStages.get(currentLevel).plus(parkingStages.get(currentLevel), samolet);
 	}
 
 	public Itechnica getSamolet(int index)
 	{
-		return parking.minus(parking, index);
+		return parkingStages.get(currentLevel).minus(parkingStages.get(currentLevel), index);
 	}
 
 	public void draw(Graphics g,int width,int height)
@@ -28,7 +46,7 @@ public class Parking {
 		drawMarking(g);
 		for(int i = 0; i < countPlaces; i++)
 		{
-			Itechnica samolet = parking.getObject(i);
+			Itechnica samolet = parkingStages.get(currentLevel).getSamolet(i);
 			if (samolet != null)
 			{
 				samolet.setPosition(5 + i / 5 * placeWidth , i % 5 * placeHeight + 15);

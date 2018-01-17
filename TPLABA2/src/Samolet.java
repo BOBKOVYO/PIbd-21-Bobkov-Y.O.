@@ -11,9 +11,8 @@ public class Samolet extends letniitransport {
 		this.colorBody= color;
 		this.countVzletMass = 0;
         
-		startPosX = 10;
-		startPosY = 100;
-
+		startPosX = 5;
+		startPosY = 5;
 	}
 
 	@Override
