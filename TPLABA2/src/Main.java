@@ -23,6 +23,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -35,6 +38,7 @@ public class Main {
 	private String[] elements = new String[6];
 	JList listLevels;
 	SelectSamolet select;
+	private static Logger log;
 
 	/**
 	 * Launch the application.
@@ -57,6 +61,18 @@ public class Main {
 	 */
 	public Main() {
 		parking = new Parking(5);
+		log = Logger.getLogger(Main.class.getName());
+				FileHandler fh = null;
+				try {
+					fh = new FileHandler("D:\\log.txt");
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				log.addHandler(fh);
 		initialize();
 		for (int i = 0; i < 5; i++) {
 			elements[i] = "Уровень " + (i+1);
@@ -67,7 +83,17 @@ public class Main {
 				select = new SelectSamolet(frame);
 				if (select.res()) {
 					Itechnica samolet = select.getSamolet();
-					int place = parking.putSamolet(samolet);
+					int place = 0;
+							try {
+									place = parking.putSamolet(samolet);
+									log.log(Level.INFO,"Поставили самолет на место " + place);
+								} catch (ParkingOverflowException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									JOptionPane.showMessageDialog(null, "Ошибка переполнения");
+								} catch (Exception ex) {
+									JOptionPane.showMessageDialog(null, "Общая ошибка");
+								}
 					panel.repaint();
 				System.out.println("Ваше место: " + place);
 			}
@@ -93,8 +119,17 @@ public class Main {
 				btnTake.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
-						if(checkPlace(numPlace.getText())) {
-							Itechnica samolet = parking.getSamolet(Integer.parseInt(numPlace.getText()));
+						if(checkPlace(numPlace.getText())) {					
+							Itechnica samolet = null;
+												try {
+													samolet = parking.getSamolet(Integer.parseInt(numPlace.getText()));
+													log.log(Level.INFO,"Забрали самолет с места " + numPlace.getText());
+												} catch (ParkingIndexOutOfRangeException e) {
+													// TODO Auto-generated catch block
+													JOptionPane.showMessageDialog(null, "Неверный номер");
+												} catch (Exception ex) {
+													JOptionPane.showMessageDialog(null, "Общая ошибка");
+												}
 							Graphics gr = panelTake.getGraphics();
 							gr.clearRect(0, 0, panelTake.getWidth(), panelTake.getHeight());
 							samolet.setPosition(5, 5);
@@ -106,7 +141,7 @@ public class Main {
         
 		btnTake.setBounds(973, 233, 81, 23);
 		frame.getContentPane().add(btnTake);
-	
+		
 		JLabel lblNewLabel = new JLabel("Место:");
 		lblNewLabel.setBounds(912, 205, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
@@ -170,7 +205,8 @@ public class Main {
 						try {
 							if (parking.save(filesave.getSelectedFile().getPath()))
 								if (filesave.getSelectedFile().getPath() != null)
-									System.out.println("Good");
+									System.out.println("Успешно");
+							        log.log(Level.INFO,"Сохранили аэродром в файл " + filesave.getSelectedFile().getName());
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -185,12 +221,13 @@ public class Main {
 					if (fileopen.showDialog(null, "Open") == JFileChooser.APPROVE_OPTION) {
 						if (parking.load(fileopen.getSelectedFile().getPath()))
 							if (fileopen.getSelectedFile().getPath() != null)
-								System.out.println("Good");
+								System.out.println("Успешно");
+								log.log(Level.INFO,"Загрузили аэродром из файла " + fileopen.getSelectedFile().getName());
 					}
 					panel.repaint();
 				}			
 			});
-	} 
+	}	 
 	private boolean checkPlace(String str){
 		try {
 	        Integer.parseInt(str);

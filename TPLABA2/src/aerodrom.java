@@ -14,9 +14,9 @@ public class aerodrom <T extends Itechnica> implements Serializable{
 		maxCount = size;
 	}
 	
-	public static <T extends Itechnica> int plus(aerodrom<T> p, T samolet)
+	public static <T extends Itechnica> int plus(aerodrom<T> p, T samolet) throws ParkingOverflowException
 	{
-		if (p.places.size() == p.maxCount) return -1;
+		if (p.places.size() == p.maxCount) throw new ParkingOverflowException();
 		for(int i = 0; i < p.places.size(); i++)
 		{
 			if (p.checkFree(i))
@@ -29,7 +29,7 @@ public class aerodrom <T extends Itechnica> implements Serializable{
 		return p.places.size() - 1;
 	}
 
-	public static <T extends Itechnica> T minus(aerodrom<T> p, int index)
+	public static <T extends Itechnica> T minus(aerodrom<T> p, int index)throws ParkingIndexOutOfRangeException
 	{
 		if (p.places.get(index) != null)
 		{
@@ -37,7 +37,7 @@ public class aerodrom <T extends Itechnica> implements Serializable{
 			p.places.remove(index);
 			return samolet;
 		}
-		return p.defaultValue;
+		throw new ParkingIndexOutOfRangeException();
 	}
 
 	public boolean checkFree(int index)
