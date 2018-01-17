@@ -6,9 +6,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Random;
 
-public class Samolet extends letniitransport implements Serializable {
+public class Samolet extends letniitransport implements Serializable, Comparable<Samolet> {
 
-	public Samolet(int maxSpeed, int maxCountVzletMass, double weight, Color color) {
+	public Samolet(int maxSpeed, int maxCountVzletMass, int weight, Color color) {
 		this.maxSpeed = maxSpeed;
 		this.maxcountVzletMass = maxCountVzletMass;
 		this.weight = weight;
@@ -35,7 +35,7 @@ public class Samolet extends letniitransport implements Serializable {
 	}
 
 	@Override
-	protected void setweight(double w) {
+	protected void setweight(int w) {
 		// TODO Auto-generated method stub
 		if (w > 60000 && w < 120000)
 			super.weight = w;
@@ -44,7 +44,7 @@ public class Samolet extends letniitransport implements Serializable {
 	}
 
 	@Override
-	public double getweight() {
+	public int getweight() {
 		// TODO Auto-generated method stub
 		return super.weight;
 	}
@@ -122,5 +122,49 @@ public class Samolet extends letniitransport implements Serializable {
 		        int blue = s.readInt();
 		        colorBody = new Color(red, green, blue);
 		    }
+
+		    	public int compareTo(Samolet other) {
+		    		// TODO Auto-generated method stub
+		    		if (other == null)
+		    			return 1;
+		    		if (maxSpeed != other.maxSpeed)
+		    			return maxSpeed + "".compareTo(other.maxSpeed + "");
+		    		if (maxcountVzletMass != other.maxcountVzletMass)
+		    			return maxcountVzletMass + "".compareTo(other.maxcountVzletMass + "");
+		    		if (weight != other.weight)
+		    			return weight + "".compareTo(other.weight + "");
+		    		if (colorBody != other.colorBody)
+		    			return colorBody.toString().compareTo(other.colorBody.toString());
+		    		return 0;
+		    	}
+		    
+		    	public boolean equals(Samolet other) {
+		    		if (other == null)
+		    			return false;
+		    		if (maxSpeed != other.maxSpeed) {
+		    			return false;
+		    		}
+		    		if (maxcountVzletMass != other.maxcountVzletMass) {
+		    			return false;
+		    		}
+		    		if (weight != other.weight) {
+		    			return false;
+		    		}
+		    		if (colorBody != other.colorBody) {
+		    			return false;
+		    		}
+		    		return true;
+		    	}
+		    
+		    	@Override
+		    	public boolean equals(Object obj) {
+		    		if (obj == null)
+		    			return false;
+		    		Samolet warObj = (Samolet) obj;
+		    		if (warObj == null)
+		    			return false;
+		    		else
+		    			return equals(warObj);
+		    	}
 }
 

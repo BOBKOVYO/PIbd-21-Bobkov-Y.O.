@@ -13,7 +13,7 @@ public class frontovoibombardir extends Samolet implements Serializable{
 
 	transient private Color dopColor;
 
-	public frontovoibombardir(int maxSpeed,int maxCountVzletMass, double weight, Color color, boolean raketi, boolean pylimet,Color dopColor) {
+	public frontovoibombardir(int maxSpeed,int maxCountVzletMass, int weight, Color color, boolean raketi, boolean pylimet,Color dopColor) {
 		super(maxSpeed, maxCountVzletMass, weight, color);
 		// TODO Auto-generated constructor stub
 		this.raketi = raketi;
@@ -70,4 +70,40 @@ public class frontovoibombardir extends Samolet implements Serializable{
 				return maxSpeed + ";" + weight + ";" + colorBody + ";" + maxcountVzletMass + ";" + raketi + ";" + pylimet + ";"
 						+ dopColor;					
 		 }
+			public int compareTo(frontovoibombardir other) {
+				 		int res = ((Samolet) this).compareTo((Samolet) other);
+				 		if (res != 0)
+				 			return res;
+				 		if (raketi != other.raketi)
+				 			return (raketi + "").compareTo(other.raketi + "");
+				 		if (pylimet != other.pylimet)
+				 			return (pylimet + "").compareTo(other.pylimet + "");
+				 		if (dopColor != other.dopColor)
+				 			return dopColor.toString().compareTo(other.dopColor.toString());
+				 		return 0;
+				 	}
+				 
+				 	public boolean equals(frontovoibombardir other) {
+				 		boolean res = ((Samolet) this).equals((Samolet) other);
+				 		if (!res)
+				 			return res;
+				 		if (raketi != other.raketi)
+				 			return false;
+				 		if (pylimet != other.pylimet)
+				 			return false;
+				 		if (dopColor != other.dopColor)
+				 			return false;
+				 		return true;
+				 	}
+				 
+				 	@Override
+				 	public boolean equals(Object obj) {
+				 		if (obj == null)
+				 			return false;
+				 		frontovoibombardir warObj = (frontovoibombardir) obj;
+				 		if (warObj == null)
+				 			return false;
+				 		else
+				 			return equals(warObj);
+				 	}
 }
