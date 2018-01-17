@@ -34,4 +34,7 @@ public class frontovoibombardir extends Samolet {
             g.drawLine(startPosX + 65, startPosY + 35, startPosX + 85, startPosY + 35);
 		}
 	}
+	public void setdopColor(Color f) {
+			dopColor = f;
+	}
 }

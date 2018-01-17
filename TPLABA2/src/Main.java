@@ -29,6 +29,7 @@ public class Main {
 	JPanel panel;
 	private String[] elements = new String[6];
 	JList listLevels;
+	SelectSamolet select;
 
 	/**
 	 * Launch the application.
@@ -57,57 +58,33 @@ public class Main {
 		}
 		listLevels.setSelectedIndex(parking.getCurrentLevel());
 	}
-
+	public void getSamolet() {
+				select = new SelectSamolet(frame);
+				if (select.res()) {
+					Itechnica samolet = select.getSamolet();
+					int place = parking.putSamolet(samolet);
+					panel.repaint();
+				System.out.println("Ваше место: " + place);
+			}
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1080, 559);
+		frame.setBounds(100, 100, 1080, 580);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		panel = new Panel1(parking);
 		panel.setBounds(10, 11, 854, 499);
 		frame.getContentPane().add(panel);
-
-		JButton btnSetSamolet = new JButton("Посадить самолёт");
-		btnSetSamolet.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				Color colorDialog = JColorChooser.showDialog(null, "JColorChooser Sample", null);
-								if (colorDialog != null) {
-									Itechnica samolet = new Samolet(100, 4, 1000, colorDialog);
-									int place = parking.putSamolet(samolet);
-									panel.repaint();
-									JOptionPane.showMessageDialog(null, "Ваше место " + place);
-				 				}
-			}
-		});
-		btnSetSamolet.setBounds(939, 293, 115, 23);
-		frame.getContentPane().add(btnSetSamolet);
-
-		JButton btnSetfrontovoibombardir= new JButton("Посадить бомбардировщик");
-		btnSetfrontovoibombardir.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				Color colorDialog1 = JColorChooser.showDialog(null, "JColorChooser Sample", null);
-								if (colorDialog1 != null) {
-								       Color colorDialog = JColorChooser.showDialog(null, "JColorChooser Sample", null);
-									if (colorDialog != null) {
-										Itechnica samolet = new frontovoibombardir(100, 4, 1000, colorDialog1, true, true, colorDialog);
-										int place = parking.putSamolet(samolet);
-										panel.repaint();
-										JOptionPane.showMessageDialog(null, "Самолёт " + place);
-									}
-			}
-			}
-		});
-		btnSetfrontovoibombardir.setBounds(939, 330, 115, 23);
-		frame.getContentPane().add(btnSetfrontovoibombardir);
-
+		
 		JPanel panelTake = new JPanel();
 		panelTake.setBounds(901, 11, 153, 170);
 		frame.getContentPane().add(panelTake);
-		JButton btnTake = new JButton("Take");
+		JButton btnTake = new JButton("Взять");
 				btnTake.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
@@ -125,7 +102,7 @@ public class Main {
 		btnTake.setBounds(973, 233, 81, 23);
 		frame.getContentPane().add(btnTake);
 		
-		JLabel lblNewLabel = new JLabel("Place");
+		JLabel lblNewLabel = new JLabel("Место:");
 		lblNewLabel.setBounds(912, 205, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
@@ -159,6 +136,16 @@ public class Main {
 		});
 		btnLevelUp.setBounds(973, 495, 89, 23);
 		frame.getContentPane().add(btnLevelUp);
+		
+		JButton btnGetSamolet = new JButton("Заказать");
+		btnGetSamolet.addActionListener(new ActionListener() {
+					@SuppressWarnings("deprecation")
+					public void actionPerformed(ActionEvent e) {
+						getSamolet();
+					}
+				});
+		        btnGetSamolet.setBounds(927, 300, 96, 23);
+				frame.getContentPane().add(btnGetSamolet);
 	}
 
 	private boolean checkPlace(String str){

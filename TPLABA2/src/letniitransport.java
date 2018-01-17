@@ -44,4 +44,7 @@ public abstract class letniitransport implements Itechnica {
         countVzletMass = 0;
         return count;
     }
+    public void setMainColor(Color c) {
+    	colorBody = c;
+    }
 }
