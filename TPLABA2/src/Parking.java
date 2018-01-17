@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -14,6 +16,7 @@ import java.io.Serializable;
 import javax.print.DocFlavor.BYTE_ARRAY;
 
 public class Parking implements Serializable{
+	
 	ArrayList<aerodrom<Itechnica>> parkingStages;
 	
 	int countPlaces = 20;
@@ -42,7 +45,7 @@ public class Parking implements Serializable{
 	{
 		if (currentLevel > 0) currentLevel--;
 	}
-	public int putSamolet(Itechnica samolet)throws ParkingOverflowException
+	public int putSamolet(Itechnica samolet)throws ParkingOverflowException, ParkingAlreadyHaveException
 	{
 		return parkingStages.get(currentLevel).plus(parkingStages.get(currentLevel), samolet);
 	}
@@ -55,13 +58,15 @@ public class Parking implements Serializable{
 	public void draw(Graphics g,int width,int height)
 	{
 		drawMarking(g);
-		for(int i = 0; i < countPlaces; i++)
+		int i = 0;
+		while (parkingStages.get(currentLevel).hasNext())
 		{
-			Itechnica samolet = parkingStages.get(currentLevel).getSamolet(i);
+			Itechnica samolet = parkingStages.get(currentLevel).next();
 			if (samolet != null)
 			{
 				samolet.setPosition(5 + i / 5 * placeWidth , i % 5 * placeHeight + 15);
 				samolet.drawSamolet(g);
+				i++;
 			}
 		}
 		
@@ -114,5 +119,14 @@ public class Parking implements Serializable{
 				
 				return true;
 			}	
-
+	public void sort() {
+		 	Collections.sort(parkingStages, new Comparator<aerodrom<Itechnica>>() {
+		 
+		 			@Override
+		 			public int compare(aerodrom<Itechnica> o1, aerodrom<Itechnica> o2) {
+		 				// TODO Auto-generated method stub
+		 				return o1.compareTo(o2);
+		 			}
+		 		});
+		 	}
 }

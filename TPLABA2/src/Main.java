@@ -119,7 +119,7 @@ public class Main {
 				btnTake.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						
-						if(checkPlace(numPlace.getText())) {					
+						if(checkPlace(numPlace.getText())) {							
 							Itechnica samolet = null;
 												try {
 													samolet = parking.getSamolet(Integer.parseInt(numPlace.getText()));
@@ -227,7 +227,16 @@ public class Main {
 					panel.repaint();
 				}			
 			});
-	}	 
+			JButton btnSort = new JButton("Sort");
+			 		btnSort.addActionListener(new ActionListener() {
+			 			public void actionPerformed(ActionEvent arg0) {
+			 				parking.sort();
+			 				panel.repaint();
+			 			}
+			 		});
+			 		btnSort.setBounds(925, 330, 89, 23);
+			 		frame.getContentPane().add(btnSort);
+	}
 	private boolean checkPlace(String str){
 		try {
 	        Integer.parseInt(str);
@@ -237,5 +246,7 @@ public class Main {
 		if(Integer.parseInt(str)>20) return false;
 		return true;
 	}
+    
 
+	 		
 }

@@ -8,16 +8,16 @@ public abstract class letniitransport implements Itechnica {
 	protected int countVzletMass;
 	public int maxcountVzletMass;
 	public int maxSpeed;
-	public double weight;
+	public int weight;
 	transient  public Color colorBody;
 
 	protected abstract void setmaxSpeed(int s);
 
 	public abstract int getmaxSpeed();
 
-	protected abstract void setweight(double w);
+	protected abstract void setweight(int w);
 
-	public abstract double getweight();
+	public abstract int getweight();
 
 	protected abstract void setmaxcountVzletMass(int c);
 
