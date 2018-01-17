@@ -9,7 +9,7 @@ public abstract class letniitransport implements Itechnica {
 	public int maxcountVzletMass;
 	public int maxSpeed;
 	public double weight;
-	public Color colorBody;
+	transient  public Color colorBody;
 
 	protected abstract void setmaxSpeed(int s);
 
@@ -47,4 +47,5 @@ public abstract class letniitransport implements Itechnica {
     public void setMainColor(Color c) {
     	colorBody = c;
     }
+    public abstract String getInfo();
 }

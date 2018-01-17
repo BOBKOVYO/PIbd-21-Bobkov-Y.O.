@@ -1,8 +1,19 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import javax.print.DocFlavor.BYTE_ARRAY;
 
-public class Parking {
+public class Parking implements Serializable{
 	ArrayList<aerodrom<Itechnica>> parkingStages;
 	
 	int countPlaces = 20;
@@ -70,6 +81,38 @@ public class Parking {
 		}
 		
 	}
-
+	public boolean save(String fileName) throws IOException {
+		
+				FileOutputStream save = null;
+				try {
+					save = new FileOutputStream(fileName);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				ObjectOutputStream obSave = new ObjectOutputStream(save);
+				System.out.println(parkingStages.get(0).getSamolet(0).getInfo());
+				obSave.writeObject(parkingStages);
+		
+				return true;
+			}
+		
+	public boolean load(String filename) {
+				try {
+					ObjectInputStream obLoad = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filename)));
+					try {
+						parkingStages = (ArrayList<aerodrom<Itechnica>>)obLoad.readObject();
+						System.out.println(parkingStages.get(0).getSamolet(0).getInfo());
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return true;
+			}	
 
 }

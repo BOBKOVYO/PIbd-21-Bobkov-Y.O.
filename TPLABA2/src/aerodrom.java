@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class aerodrom <T extends Itechnica> {
+
+public class aerodrom <T extends Itechnica> implements Serializable{
 	private Dictionary<Integer, T> places;
 	int maxCount;
 	private T defaultValue;
