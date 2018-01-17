@@ -42,12 +42,12 @@ public class Parking implements Serializable{
 	{
 		if (currentLevel > 0) currentLevel--;
 	}
-	public int putSamolet(Itechnica samolet)
+	public int putSamolet(Itechnica samolet)throws ParkingOverflowException
 	{
 		return parkingStages.get(currentLevel).plus(parkingStages.get(currentLevel), samolet);
 	}
 
-	public Itechnica getSamolet(int index)
+	public Itechnica getSamolet(int index)throws ParkingIndexOutOfRangeException
 	{
 		return parkingStages.get(currentLevel).minus(parkingStages.get(currentLevel), index);
 	}
