@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Color;
 
 public interface Itechnica 
 {
@@ -7,4 +8,5 @@ public interface Itechnica
 		void setPosition(int x, int y);
 		void loadVzletMass(int count);
         int getVzletMass();
+        void setMainColor(Color color);
 }
