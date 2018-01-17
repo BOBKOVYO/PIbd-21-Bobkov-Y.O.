@@ -8,14 +8,19 @@ import java.awt.Panel;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 
@@ -101,7 +106,7 @@ public class Main {
         
 		btnTake.setBounds(973, 233, 81, 23);
 		frame.getContentPane().add(btnTake);
-		
+	
 		JLabel lblNewLabel = new JLabel("Место:");
 		lblNewLabel.setBounds(912, 205, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
@@ -146,8 +151,46 @@ public class Main {
 				});
 		        btnGetSamolet.setBounds(927, 300, 96, 23);
 				frame.getContentPane().add(btnGetSamolet);
-	}
-
+		
+	JMenuBar menuBar = new JMenuBar();
+			JMenu menu = new JMenu("File");
+			frame.setJMenuBar(menuBar);
+			menuBar.add(menu);
+		JMenuItem menuSave = new JMenuItem("Save");
+			menu.add(menuSave);
+			JMenuItem menuOpen = new JMenuItem("Open");
+			menu.add(menuOpen);
+	
+			menuSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+	
+					JFileChooser filesave = new JFileChooser();
+	
+					if (filesave.showDialog(null, "Save") == JFileChooser.APPROVE_OPTION) {
+						try {
+							if (parking.save(filesave.getSelectedFile().getPath()))
+								if (filesave.getSelectedFile().getPath() != null)
+									System.out.println("Good");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+			});
+	
+			menuOpen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFileChooser fileopen = new JFileChooser();
+					if (fileopen.showDialog(null, "Open") == JFileChooser.APPROVE_OPTION) {
+						if (parking.load(fileopen.getSelectedFile().getPath()))
+							if (fileopen.getSelectedFile().getPath() != null)
+								System.out.println("Good");
+					}
+					panel.repaint();
+				}			
+			});
+	} 
 	private boolean checkPlace(String str){
 		try {
 	        Integer.parseInt(str);

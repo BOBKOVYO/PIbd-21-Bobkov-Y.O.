@@ -1,8 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Samolet extends letniitransport {
+public class Samolet extends letniitransport implements Serializable {
 
 	public Samolet(int maxSpeed, int maxCountVzletMass, double weight, Color color) {
 		this.maxSpeed = maxSpeed;
@@ -98,5 +102,25 @@ public class Samolet extends letniitransport {
 		startPosX = x;
         startPosY = y;		
 	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return maxSpeed + ";" + weight + ";" + maxcountVzletMass + ";" + colorBody;
+	}
+	private void writeObject(ObjectOutputStream s) throws IOException {
+		        s.defaultWriteObject();
+		        s.writeInt(colorBody.getRed());
+		        s.writeInt(colorBody.getGreen());
+		        s.writeInt(colorBody.getBlue());
+		    }
+		
+		    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
+		        s.defaultReadObject();
+		        int red = s.readInt();
+		        int green = s.readInt();
+		        int blue = s.readInt();
+		        colorBody = new Color(red, green, blue);
+		    }
 }
 

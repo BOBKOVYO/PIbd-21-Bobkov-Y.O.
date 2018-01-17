@@ -9,4 +9,5 @@ public interface Itechnica
 		void loadVzletMass(int count);
         int getVzletMass();
         void setMainColor(Color color);
+		String getInfo();
 }
