@@ -10,10 +10,9 @@ public class Samolet extends letniitransport {
 		this.weight = weight;
 		this.colorBody= color;
 		this.countVzletMass = 0;
-        Random rand = new Random();
         
-		startPosX = rand.nextInt(130)+10;
-		startPosY = rand.nextInt(130)+10;
+		startPosX = 10;
+		startPosY = 100;
 
 	}
 
@@ -97,8 +96,8 @@ public class Samolet extends letniitransport {
 
 	@Override
 	public void setPosition(int x, int y) {
-		// TODO Auto-generated method stub
-		
+		startPosX = x;
+        startPosY = y;		
 	}
 }
 
